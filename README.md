@@ -28,11 +28,31 @@ USキーボードの **左右 Ctrl キーの空打ち（単体タップ）** で
 
 ## 使い方
 
+### インストーラーを使う
+
+Releasesから `ctrl-ime-key-<version>-setup-x64.exe` をダウンロードして実行します。
+セットアップ時に、次のインストール方法を選択できます。
+
+- **現在のユーザーのみ**：管理者権限なしでユーザー領域へインストール
+- **すべてのユーザー**：管理者権限でProgram Filesへインストール
+
+スタートアップへの登録は、セットアップ中の「追加オプション」で変更できます。
+
 ### 1. ビルド
 ```powershell
 cargo build --release
 ```
 `target\release\ctrl-ime-key.exe` に実行ファイルが生成されます。
+
+### インストーラーのビルド
+
+[Inno Setup 6](https://jrsoftware.org/isinfo.php) をインストールしたうえで、PowerShellから次を実行します。
+
+```powershell
+.\build-installer.ps1
+```
+
+`dist\ctrl-ime-key-<version>-setup-x64.exe` が生成されます。バージョン番号は`Cargo.toml`から自動取得されます。
 
 ### 2. 起動
 `ctrl-ime-key.exe` を実行すると、バックグラウンドで起動し、タスクトレイ（画面右下の通知領域）に常駐します。
