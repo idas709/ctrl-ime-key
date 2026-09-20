@@ -17,6 +17,12 @@ try {
         throw "cargo build --release failed."
     }
 
+    $distDir = Join-Path $projectRoot "dist"
+    New-Item -ItemType Directory -Path $distDir -Force | Out-Null
+    $standaloneName = "ctrl-ime-key-$appVersion-standalone-x64.exe"
+    Copy-Item -LiteralPath (Join-Path $projectRoot "target\release\ctrl-ime-key.exe") `
+        -Destination (Join-Path $distDir $standaloneName) -Force
+
     $innoRegistryKeys = @(
         "HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*",
         "HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*",
@@ -43,6 +49,7 @@ try {
         throw "Installer compilation failed."
     }
 
+    Write-Host "Created: dist\$standaloneName"
     Write-Host "Created: dist\ctrl-ime-key-$appVersion-setup-x64.exe"
 }
 finally {

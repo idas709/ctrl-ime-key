@@ -53,6 +53,7 @@ cargo build --release
 ```
 
 `dist\ctrl-ime-key-<version>-setup-x64.exe` が生成されます。バージョン番号は`Cargo.toml`から自動取得されます。
+同時に、インストール不要の `dist\ctrl-ime-key-<version>-standalone-x64.exe` も生成されます。
 
 ### 2. 起動
 `ctrl-ime-key.exe` を実行すると、バックグラウンドで起動し、タスクトレイ（画面右下の通知領域）に常駐します。
